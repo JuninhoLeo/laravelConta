@@ -36,7 +36,7 @@ class BancosController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validade([
+        $request->validate([
             'descricao' => 'required|string'
         ]);
 
