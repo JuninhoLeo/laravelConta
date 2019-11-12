@@ -36,7 +36,16 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string',
+            'data_cadastro' => 'required|date'
+        ]);
+
+        Cliente::create($request->all());
+
+        return redirect()
+            ->route('clientes.index')
+            ->with('success', 'Cliente adicionado com sucesso.');
     }
 
     /**
@@ -47,7 +56,7 @@ class ClientesController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+        return view('clientes.show', compact('cliente'));
     }
 
     /**
@@ -58,7 +67,7 @@ class ClientesController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('clientes.edit', compact('cliente'));
     }
 
     /**
@@ -70,7 +79,16 @@ class ClientesController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string',
+            'data_cadastro' => 'required|date'
+        ]);
+
+        $cliente->update($request->all());
+
+        return redirect()
+            ->route('clientes.index')
+            ->with('success', 'Cliente alterado com sucesso.');
     }
 
     /**
@@ -81,6 +99,8 @@ class ClientesController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+        return redirect()->route('clientes.index')
+        ->with('success', 'Cliente removido com sucesso..');
     }
 }

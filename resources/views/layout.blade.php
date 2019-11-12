@@ -43,8 +43,9 @@
     }
 
     header {
-        background: #666;
-        height: 100px;
+        margin-top: 0px;
+        background: #6c757d;
+        height: 109px;
     }
 
     #nav-direita {
@@ -52,12 +53,12 @@
     }
 
     #nav-direita li {
-        margin: 10px;
+        margin: 30px;
     }
 
     #nav-esquerda li {
         display: inline-block;
-        margin: 10px;
+        margin: 0px;
     }
 
     #nav-esquerda {
@@ -69,6 +70,7 @@
     }
 
     footer {
+
         clear: both;
         background: #666;
         margin-top: 10px;
@@ -76,32 +78,33 @@
         padding: 10px;
         color: white;
     }
+
+    a#btn {
+        margin-left: 20px;
+    }
 </style>
 
 <body>
     <header>
 
         <ul id="nav-direita">
-            <li> <a href="">Logout</a></li>
+            <li> <a class="btn btn-secondary" href="">Logout</a></li>
         </ul>
 
         <h1 id="cabecalho">Trabalho de Laravel</h1>
 
         <ul id="nav-esquerda">
-            <li><a href="{{ route('bancos.index') }}">Bancos</a></li>
-            <li><a href="{{ route('clientes.index') }}">Clientes</a></li>
-            <li><a href="{{ route('backup.index') }}">Transaçoes</a></li>
+            <li><a id="btn" class="btn btn-secondary" href="{{ route('bancos.index') }}">Bancos</a></li>
+            <li><a class="btn btn-secondary" href="{{ route('clientes.index') }}">Clientes</a></li>
+            <li><a class="btn btn-secondary" href="{{ route('backup.index') }}">Transaçoes</a></li>
         </ul>
 
     </header>
 
-    <div class="container">
+    <div class="container col-md-12">
         @yield('content')
     </div>
 
-    <footer>
-        &COPY;2019 by José Leocadio
-    </footer>
 
 </body>
 

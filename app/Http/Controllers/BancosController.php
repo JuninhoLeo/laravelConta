@@ -55,7 +55,7 @@ class BancosController extends Controller
      */
     public function show(Banco $banco)
     {
-        //
+        return view('bancos.show', compact('banco'));
     }
 
     /**
@@ -66,7 +66,7 @@ class BancosController extends Controller
      */
     public function edit(Banco $banco)
     {
-        //
+        return view('bancos.edit', compact('banco'));
     }
 
     /**
@@ -78,7 +78,15 @@ class BancosController extends Controller
      */
     public function update(Request $request, Banco $banco)
     {
-        //
+        $request->validate([
+            'descricao' => 'required|string'
+        ]);
+
+        $banco->update($request->all());
+
+        return redirect()
+            ->route('bancos.index')
+            ->with('success', 'Banco alterado com sucesso.');
     }
 
     /**
@@ -89,6 +97,8 @@ class BancosController extends Controller
      */
     public function destroy(Banco $banco)
     {
-        //
+        $banco->delete();
+        return redirect()->route('bancos.index')
+        ->with('success', 'Banco removido com sucesso..');
     }
 }

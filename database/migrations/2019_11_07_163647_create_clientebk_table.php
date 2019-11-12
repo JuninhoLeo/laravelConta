@@ -15,9 +15,9 @@ class CreateClientebkTable extends Migration
     {
         Schema::create('clientebks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome',35);
+            $table->string('nome', 35);
             $table->date('data_retirada');
-            $table->float('saldo');
+            $table->float('saldo', 9,2);
             $table->timestamps();
         });
     }

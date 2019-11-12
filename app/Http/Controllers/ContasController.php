@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contacls;
+use App\Conta;
 use Illuminate\Http\Request;
 
 class ContasController extends Controller
@@ -41,10 +41,10 @@ class ContasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Contacls  $contacls
+     * @param  \App\Conta  $conta
      * @return \Illuminate\Http\Response
      */
-    public function show(Contacls $contacls)
+    public function show(Conta $conta)
     {
         //
     }
@@ -52,10 +52,10 @@ class ContasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Contacls  $contacls
+     * @param  \App\Conta  $conta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contacls $contacls)
+    public function edit(Conta $conta)
     {
         //
     }
@@ -64,10 +64,10 @@ class ContasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Contacls  $contacls
+     * @param  \App\Conta  $conta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contacls $contacls)
+    public function update(Request $request, Conta $conta)
     {
         //
     }
@@ -75,10 +75,10 @@ class ContasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Contacls  $contacls
+     * @param  \App\Conta  $conta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contacls $contacls)
+    public function destroy(Conta $conta)
     {
         //
     }
