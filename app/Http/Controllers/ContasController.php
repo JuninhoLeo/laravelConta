@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 use App\Conta;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,8 @@ class ContasController extends Controller
      */
     public function index()
     {
-        //
+        $contas = DB::table('contas')->paginate(4);
+        return view('Contas.index', ['contas' => $contas]);
     }
 
     /**
@@ -24,7 +28,7 @@ class ContasController extends Controller
      */
     public function create()
     {
-        //
+        return view('Contas.create');
     }
 
     /**
@@ -35,7 +39,17 @@ class ContasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'codbanco'   => 'required',
+            'codcliente' => 'required',
+            'saldo'      => 'required'
+        ]);
+
+        Conta::create($request->all());
+
+        return redirect()
+        ->route('contas.index')
+        ->with('success', 'Conta criada com sucesso!');
     }
 
     /**
@@ -46,7 +60,7 @@ class ContasController extends Controller
      */
     public function show(Conta $conta)
     {
-        //
+        return view('contas.show', compact('conta'));
     }
 
     /**
@@ -57,7 +71,7 @@ class ContasController extends Controller
      */
     public function edit(Conta $conta)
     {
-        //
+        return view('contas.edit', compact('conta'));
     }
 
     /**
@@ -69,7 +83,17 @@ class ContasController extends Controller
      */
     public function update(Request $request, Conta $conta)
     {
-        //
+        $request->validate([
+            'codcliente' => 'required',
+            'codbanco' => 'required',
+            'saldo' => 'required'
+        ]);
+
+        $conta->update($request->all());
+
+        return redirect()
+            ->route('contas.index')
+            ->with('success', 'Conta atualizada com sucesso!!');
     }
 
     /**
@@ -80,6 +104,9 @@ class ContasController extends Controller
      */
     public function destroy(Conta $conta)
     {
-        //
+        $conta->delete();
+        return redirect()
+        ->route('contas.index')
+        ->with('success', 'Conta removida com sucesso!');
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Conta extends Model
 {
     protected $fillable = [
-        'numero', 'cliente', 'banco', 'saldo'
+        'id', 'codcliente', 'codbanco', 'saldo', 'created_at', 'updated_at' , 'cliente', 'banco',
     ];
 
     public function cliente()

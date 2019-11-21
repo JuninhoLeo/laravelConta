@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 use App\Banco;
 use Illuminate\Http\Request;
 
@@ -14,8 +17,8 @@ class BancosController extends Controller
      */
     public function index()
     {
-        $bancos = Banco::orderby('descricao')->get();
-        return view('bancos.index', compact('bancos'));
+        $bancos = DB::table('bancos')->paginate(5);
+        return view('bancos.index', ['bancos' => $bancos]);
     }
 
     /**
@@ -98,7 +101,8 @@ class BancosController extends Controller
     public function destroy(Banco $banco)
     {
         $banco->delete();
-        return redirect()->route('bancos.index')
+        return redirect()
+        ->route('bancos.index')
         ->with('success', 'Banco removido com sucesso..');
     }
 }

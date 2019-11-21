@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
 
 <div class="container col-md-4">
@@ -14,11 +14,13 @@
         <div class="field">
             <strong>Descrição:</strong>
             <div class="control">
-                <input class="input" type="text" name="descricao" value="{{ $banco->descricao }}">
+                <input class="input" type="text" name="descricao" value="{{ $banco->descricao }}" style="height:40px; width: 430px; font-size: 18px;" required>
             </div>
         </div>
-            <a class="btn btn-outline-danger" href="{{ route('bancos.index') }}">votar</a>
+        <div style="float: right;">
+            <a class="btn btn-outline-danger" href="{{ route('bancos.index') }}">voltar</a>
             <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
     </form>
 </div>
 @endsection

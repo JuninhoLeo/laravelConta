@@ -12,10 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('layout');
+    return view('/auth/login');
 });
 
-Route::resource('contas', 'ContasController');
-Route::resource('bancos', 'BancosController');
-Route::resource('clientes', 'ClientesController');
-Route::resource('backup', 'ClientesbkController');
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::resource('contas', 'ContasController')->middleware('auth');
+Route::resource('bancos', 'BancosController')->middleware('auth');
+Route::resource('clientes', 'ClientesController')->middleware('auth');
+Route::resource('backup', 'ClientesbkController')->middleware('auth');
+Route::resource('contas', 'ContasController')->middleware('auth');

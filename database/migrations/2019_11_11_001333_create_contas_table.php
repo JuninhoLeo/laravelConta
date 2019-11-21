@@ -14,19 +14,17 @@ class CreateContasTable extends Migration
     public function up()
     {
         Schema::create('contas', function (Blueprint $table) {
-            $table->bigIncrements('numero');
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('codcliente');
             $table->unsignedBigInteger('codbanco');
             $table->float('saldo', 8,2);
             $table->timestamps();
 
             $table->foreign('codcliente')
-                ->references('id')->on('clientes')
-                ->onDelete('cascade');
+                ->references('id')->on('clientes');
 
             $table->foreign('codbanco')
-                ->references('id')->on('bancos')
-                ->onDelete('cascade');
+                ->references('id')->on('bancos');
         });
     }
 

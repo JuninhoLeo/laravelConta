@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 use App\Cliente;
 use Illuminate\Http\Request;
 
@@ -14,8 +17,8 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::orderby('id')->get();
-        return view('clientes.index', compact('clientes'));
+        $clientes = DB::table('clientes')->paginate(5);
+        return view('clientes.index', ['clientes' => $clientes]);
     }
 
     /**
