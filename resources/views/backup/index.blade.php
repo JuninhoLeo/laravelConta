@@ -52,7 +52,7 @@ $clientes = Cliente::All();
                     <form action="{{ route('backup.destroy', $backup->id) }}" method="post">
                         @csrf
                         @method("DELETE")
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger">Apagar</button>
                     </form>
                 </td>
             </tr>
