@@ -23,3 +23,4 @@ Route::resource('bancos', 'BancosController')->middleware('auth');
 Route::resource('clientes', 'ClientesController')->middleware('auth');
 Route::resource('backup', 'ClientesbkController')->middleware('auth');
 Route::resource('contas', 'ContasController')->middleware('auth');
+Route::resource('movimentacoes', 'MovimentacoesController')->middleware('auth');

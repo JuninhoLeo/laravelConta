@@ -17,7 +17,7 @@ class ContasController extends Controller
      */
     public function index()
     {
-        $contas = DB::table('contas')->paginate(4);
+        $contas = DB::table('contas')->paginate(3);
         return view('Contas.index', ['contas' => $contas]);
     }
 

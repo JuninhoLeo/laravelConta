@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-
-use App\Clientebk;
+use App\Movimentacao;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
-class ClientesbkController extends Controller
+class MovimentacoesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +14,7 @@ class ClientesbkController extends Controller
      */
     public function index()
     {
-        $clientesbk = DB::table('clientebks')->paginate(3);
-        return view('backup.index', compact('clientesbk'));
+        //
     }
 
     /**
@@ -29,7 +24,7 @@ class ClientesbkController extends Controller
      */
     public function create()
     {
-        //
+        return view('movimentacoes.create');
     }
 
     /**
@@ -38,18 +33,28 @@ class ClientesbkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Clientebk $backup)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'cliente' => 'required',
+            'tipo' => 'required',
+            'valor' => 'required'
+        ]);
+
+        Movimentacao::create($request->all());
+
+        return redirect()
+        ->route('backup.index')
+        ->with('success', 'Movimentaçao Efetuada com sucesso!!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Clientebk  $clientebk
+     * @param  \App\Movimentacao  $movimentacao
      * @return \Illuminate\Http\Response
      */
-    public function show(Clientebk $clientebk)
+    public function show(Movimentacao $movimentacao)
     {
         //
     }
@@ -57,10 +62,10 @@ class ClientesbkController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Clientebk  $clientebk
+     * @param  \App\Movimentacao  $movimentacao
      * @return \Illuminate\Http\Response
      */
-    public function edit(Clientebk $clientebk)
+    public function edit(Movimentacao $movimentacao)
     {
         //
     }
@@ -69,10 +74,10 @@ class ClientesbkController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Clientebk  $clientebk
+     * @param  \App\Movimentacao  $movimentacao
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clientebk $clientebk)
+    public function update(Request $request, Movimentacao $movimentacao)
     {
         //
     }
@@ -80,13 +85,11 @@ class ClientesbkController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Clientebk  $clientebk
+     * @param  \App\Movimentacao  $movimentacao
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clientebk $clientebk)
+    public function destroy(Movimentacao $movimentacao)
     {
-        $clientebk->delete();
-        return redirect()->route('backup.index')
-            ->with('success', 'Histórico removido com sucesso!!');
+        //
     }
 }

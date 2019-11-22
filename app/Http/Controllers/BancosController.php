@@ -17,7 +17,7 @@ class BancosController extends Controller
      */
     public function index()
     {
-        $bancos = DB::table('bancos')->paginate(5);
+        $bancos = DB::table('bancos')->paginate(3);
         return view('bancos.index', ['bancos' => $bancos]);
     }
 

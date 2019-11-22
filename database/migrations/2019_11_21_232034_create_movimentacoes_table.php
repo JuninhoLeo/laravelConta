@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClientebkTable extends Migration
+class CreateMovimentacoesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,16 @@ class CreateClientebkTable extends Migration
      */
     public function up()
     {
-        Schema::create('clientebks', function (Blueprint $table) {
+        Schema::create('movimentacoes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nome', 35);
-            $table->date('data');
-            $table->float('saldo_anterior', 9,2);
-            $table->float('saldo_atual', 9, 2);
+            $table->unsignedBigInteger('codcliente');
+            $table->integer('tipo');
+            $table->float('valor');
+
             $table->timestamps();
+
+            $table->foreign('codcliente')
+                ->references('id')->on('clientes');
         });
     }
 
@@ -30,6 +33,6 @@ class CreateClientebkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clientebks');
+        Schema::dropIfExists('movimentacoes');
     }
 }
