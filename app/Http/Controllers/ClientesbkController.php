@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+    use App\Http\Controllers\Controller;
+    use Illuminate\Support\Facades\DB;
 
 use App\Clientebk;
 use Illuminate\Http\Request;

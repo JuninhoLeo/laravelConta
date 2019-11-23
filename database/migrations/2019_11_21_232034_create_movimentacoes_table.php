@@ -13,7 +13,7 @@ class CreateMovimentacoesTable extends Migration
      */
     public function up()
     {
-        Schema::create('movimentacoes', function (Blueprint $table) {
+        Schema::create('movimentacaos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('codcliente');
             $table->integer('tipo');

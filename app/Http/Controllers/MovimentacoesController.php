@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Movimentacao;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 class MovimentacoesController extends Controller
 {
     /**
@@ -41,7 +44,11 @@ class MovimentacoesController extends Controller
             'valor' => 'required'
         ]);
 
-        Movimentacao::create($request->all());
+        DB::create($request->all());
+
+        $saldo = DB::select('select saldo from contas where codcliente = ?', ['cliente']);
+        DB::insert('INSERT into clientebk (nome, data, saldo_anterior, saldo_atual)
+                    values (?, curdate(), ?, ?)', ['cliente', $saldo, $saldo*'tipo']);
 
         return redirect()
         ->route('backup.index')
